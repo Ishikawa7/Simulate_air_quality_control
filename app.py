@@ -6,7 +6,7 @@ import dash_bootstrap_components as dbc
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
 # DASH APP #############################################################################################################
-app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SANDSTONE, dbc_css]) #suppress_callback_exceptions=True
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.LUX, dbc_css]) #suppress_callback_exceptions=True
 
 def create_app_layout():
     return dbc.Container(
@@ -103,24 +103,3 @@ if __name__ == "__main__":
 
 # if Python [Errno 98] Address already in use 
 # kill -9 $(ps -A | grep python | awk '{print $1}')
-    
-# In questo script, viene definita un'applicazione Dash per la visualizzazione di analisi e risultati
-# relativi a un progetto chiamato "PROGETTO P_RAM". L'app utilizza il framework Dash di Plotly
-# e il tema "SANDSTONE" di dash-bootstrap-components per la presentazione grafica.
-
-# ESTERNAZIONE DELLE RISORSE CSS:
-# Viene dichiarato un link esterno a un file CSS di stile, utilizzato per personalizzare l'aspetto
-# degli elementi Dash. Il file viene caricato da un repository CDN.
-
-# LAYOUT DELL'APP:
-# Viene definita la funzione create_app_layout(), che genera il layout principale dell'app.
-# Questo layout include una barra di navigazione con link a pagine specifiche, un bottone per mostrare/nascondere
-# l'elenco delle pagine disponibili, un contenitore per visualizzare le pagine, e una sezione con informazioni
-# aggiuntive e link alla guida del progetto.
-
-# CALLBACKS:
-# Viene definita una callback per gestire l'apertura/chiusura dell'elenco delle pagine quando si fa clic sul bottone.
-
-# RUN THE APP:
-# L'app viene inizializzata e avviata utilizzando Dash. L'app è accessibile all'indirizzo http://0.0.0.0:8080/,
-# e il debug è disabilitato per l'utilizzo in produzione.

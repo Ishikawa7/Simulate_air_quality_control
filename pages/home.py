@@ -5,11 +5,6 @@ import plotly.express as px
 import dash
 from dash import Dash, Input, Output, State, callback, html, dash_table, dcc
 import dash_bootstrap_components as dbc
-import json
-
-import base64
-import io
-from data import DataClass
 
 dash.register_page(
     __name__,
@@ -22,10 +17,97 @@ def create_layout_home():
 
     return dbc.Container(
         [
-            dbc.Button("Start simulation", color="primary", className="me-1"),
+            dbc.Row(html.H1("Air Quality Simulator", className="text-center")),
+            html.Br(),
+            dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            html.H5("People"),
+                            dbc.InputGroup(
+                                [
+                                    dbc.Button("-", id="input-people", n_clicks=0),
+                                    dbc.Input(id="value-people", placeholder="0"),
+                                    dbc.Button("+", id="input-people", n_clicks=0),
+                                ]
+                            ),
+                        ]
+                    ),
+                    dbc.Col(
+                        [
+                            html.H5("Volume"),
+                            dbc.InputGroup(
+                                [
+                                    dbc.Button("-", id="input-volume", n_clicks=0),
+                                    dbc.Input(id="value-volume", placeholder="20"),
+                                    dbc.Button("+", id="input-volume", n_clicks=0),
+                                ]
+                            ),
+                        ]
+                    ),
+                    dbc.Col(
+                        [
+                            html.H5("Temperature"),
+                            dbc.InputGroup(
+                                [
+                                    dbc.Button("-", id="input-pumpL", n_clicks=0),
+                                    dbc.Input(id="value-pumpL", placeholder="0"),
+                                    dbc.Button("+", id="input-pumpL", n_clicks=0),
+                                ]
+                            ),
+                        ]
+                    ),
+                    dbc.Col(
+                        [
+                            html.H5("Humidity"),
+                            dbc.InputGroup(
+                                [
+                                    dbc.Button("-", id="input-pumpN", n_clicks=0),
+                                    dbc.Input(id="value-pumpN", placeholder="0"),
+                                    dbc.Button("+", id="input-pumpN", n_clicks=0),
+                                ]
+                            ),
+                        ]
+                    ),
+                ]
+            ),
+            # horizontal line
+            html.Hr(),
+            dbc.Row(
+                [
+                    dbc.Col(
+                        [dcc.Graph()],
+                        width=9,
+                    ),
+                    dbc.Col(
+                        [
+                            html.Div("Pump power(%)"),
+                            dbc.Progress(label="25%", value=25),
+                            html.Br(),
+                            html.Br(),
+                            html.H6(["People average last 10 minutes", dbc.Badge("0", className="ms-1")]),
+                            dcc.Graph(),
+                        ],
+                        width=3,
+                    ),
+                ]
+            ),
+            html.Hr(),
+            dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            dbc.Button("Start simulation", color="primary", className="me-1"),
+                            html.Div(style={'display': 'inline-block', 'width': '250px'}),
+                            dbc.Button("Cancel simulation", color="danger", className="me-1"),
+                        ],
+                        width=12,
+                    ),
+                ]
+            ),
         ],
     )
-
+layout = create_layout_home
 #@app.callback(
 #    Output("example-output", "children"), [Input("example-button", "n_clicks")]
 #)
