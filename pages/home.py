@@ -23,7 +23,7 @@ def create_layout_home():
                 [
                     dbc.Col(
                         [
-                            html.H5("People"),
+                            html.H5("People(n)"),
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-people", n_clicks=0),
@@ -35,7 +35,7 @@ def create_layout_home():
                     ),
                     dbc.Col(
                         [
-                            html.H5("Volume"),
+                            html.H5("Volume(m^3)"),
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-volume", n_clicks=0),
@@ -47,7 +47,7 @@ def create_layout_home():
                     ),
                     dbc.Col(
                         [
-                            html.H5("Temperature"),
+                            html.H5("Pump capacity(L/min)"),
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-pumpL", n_clicks=0),
@@ -59,7 +59,7 @@ def create_layout_home():
                     ),
                     dbc.Col(
                         [
-                            html.H5("Humidity"),
+                            html.H5("N pumps"),
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-pumpN", n_clicks=0),
@@ -81,12 +81,14 @@ def create_layout_home():
                     ),
                     dbc.Col(
                         [
-                            html.Div("Pump power(%)"),
+                            html.H6("Pump power(%)"),
                             dbc.Progress(label="25%", value=25),
                             html.Br(),
                             html.Br(),
                             html.H6(["People average last 10 minutes", dbc.Badge("0", className="ms-1")]),
-                            dcc.Graph(),
+                            html.Br(),
+                            html.Br(),
+                            # add threshold ###################################################################################################
                         ],
                         width=3,
                     ),
