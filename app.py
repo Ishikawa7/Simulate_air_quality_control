@@ -2,6 +2,11 @@ import dash
 from dash import Dash, Input, Output, State, callback, html, dcc
 import dash_bootstrap_components as dbc
 
+import tensorflow as tf
+import os
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+
 # css file for dash components
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
@@ -14,8 +19,8 @@ def create_app_layout():
             dbc.NavbarSimple(
                 id = "navbar",
                 children=[
-                    dbc.NavItem(dbc.NavLink("Pagina iniziale", href="/", style={'font-size': '15px'})),
-                    dbc.NavItem(dbc.NavLink("Guida", href="/guide", style={'font-size': '15px'})),
+                    #dbc.NavItem(dbc.NavLink("Pagina iniziale", href="/", style={'font-size': '15px'})),
+                    dbc.NavItem(dbc.NavLink("Guide", href="/guide", style={'font-size': '15px'})),
                     #html.Img(src='/static/icons/Logo_COR.png', height="100px"),
                     ## add space between images
                     #html.Div(style={'display': 'inline-block', 'width': '5px'}),
@@ -23,58 +28,58 @@ def create_app_layout():
                     #html.Div(style={'display': 'inline-block', 'width': '5px'}),
                     #html.Img(src='/static/icons/Logo_semeiontech.png', height="100px"),
                 ],
-                brand="PROTOTIPO AIR CONTROLLER",
+                brand="Air Quality Controller Simulator",
                 brand_href="#",
                 color="primary",
                 dark=True,
             ),
             html.Hr(),
             # temp for showing all pages
-            html.Div(
-                [
-                    dbc.Button(
-                        "Pagine",
-                        id="collapse-button-nav",
-                        className="mb-3",
-                        color="primary",
-                        n_clicks=0,
-                    ),
-                    dbc.Collapse(
-                        html.Div([
-                            html.Div(
-                                dcc.Link(f"{page['name']} - {page['path']}", href=page["relative_path"])
-                            ) for page in dash.page_registry.values()
-                        ]),
-                        id="collapse-nav",
-                    ),
-                ]
-            ),
+            #html.Div(
+            #    [
+            #        dbc.Button(
+            #            "Pagine",
+            #            id="collapse-button-nav",
+            #            className="mb-3",
+            #            color="primary",
+            #            n_clicks=0,
+            #        ),
+            #        dbc.Collapse(
+            #            html.Div([
+            #                html.Div(
+            #                    dcc.Link(f"{page['name']} - {page['path']}", href=page["relative_path"])
+            #                ) for page in dash.page_registry.values()
+            #            ]),
+            #            id="collapse-nav",
+            #        ),
+            #    ]
+            #),
             #########################
     	    dash.page_container,
             # add a footer
             html.Hr(),
             # use a jumbotron to add a description for the app
-            html.Div(
-                dbc.Container(
-                    [
-                        html.H3("Informazioni utili"),
-                        html.P(
-                            "Simulazione",
-                            className="lead",
-                        ),
-                        html.Hr(className="my-2"),
-                        html.P(
-                            "Per avere informazioni consultare la guida."
-                        ),
-                        html.P(
-                            dbc.Button("Guida", color="primary", href='/guide'), className="lead"
-                        ),
-                    ],
-                    fluid=True,
-                    className="py-3",
-                ),
-                className="p-3 bg-light rounded-3",
-            )
+            #html.Div(
+            #    dbc.Container(
+            #        [
+            #            html.H3("Info"),
+            #            html.P(
+            #                "Simulator",
+            #                className="lead",
+            #            ),
+            #            html.Hr(className="my-2"),
+            #            html.P(
+            #                "For more information, please visit the guide page."
+            #            ),
+            #            html.P(
+            #                dbc.Button("Guida", color="primary", href='/guide'), className="lead"
+            #            ),
+            #        ],
+            #        fluid=True,
+            #        className="py-3",
+            #    ),
+            #    className="p-3 bg-light rounded-3",
+            #)
         ],
         fluid=True,
     )
@@ -83,16 +88,16 @@ app.layout = create_app_layout
 
 #CALLBACKS #######################################################################################################
 
-@app.callback(
-    Output("collapse-nav", "is_open"),
-    [Input("collapse-button-nav", "n_clicks")],
-    [State("collapse-nav", "is_open")],
-    prevent_initial_call=True
-)
-def toggle_collapse(n, is_open):
-    if n:
-        return not is_open
-    return is_open
+#@app.callback(
+#    Output("collapse-nav", "is_open"),
+#    [Input("collapse-button-nav", "n_clicks")],
+#    [State("collapse-nav", "is_open")],
+#    prevent_initial_call=True
+#)
+#def toggle_collapse(n, is_open):
+#    if n:
+#        return not is_open
+#    return is_open
 # RUN THE APP ###########################################################################################################
 if __name__ == "__main__":
     # shut down any running dash processes
