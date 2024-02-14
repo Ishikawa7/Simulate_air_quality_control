@@ -41,7 +41,7 @@ def create_layout_home():
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-volume_minus", n_clicks=0),
-                                    dbc.Input(id="value-volume", placeholder="20", disabled=True, value=20),
+                                    dbc.Input(id="value-volume", placeholder="27", disabled=True, value=27), # 10 m^2
                                     dbc.Button("+", id="input-volume_plus", n_clicks=0),
                                 ]
                             ),
@@ -53,7 +53,7 @@ def create_layout_home():
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-pumpL_minus", n_clicks=0),
-                                    dbc.Input(id="value-pumpL", placeholder="680", disabled=True, value=680),#566
+                                    dbc.Input(id="value-pumpL", placeholder="566", disabled=True, value=566),#566 = 10 cfm
                                     dbc.Button("+", id="input-pumpL_plus", n_clicks=0),
                                 ]
                             ),
@@ -65,7 +65,7 @@ def create_layout_home():
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-pumpN_minus", n_clicks=0),
-                                    dbc.Input(id="value-pumpN", placeholder="8", disabled=True, value=8),
+                                    dbc.Input(id="value-pumpN", placeholder="4", disabled=True, value=4),
                                     dbc.Button("+", id="input-pumpN_plus", n_clicks=0),
                                 ]
                             ),
@@ -97,7 +97,7 @@ def create_layout_home():
                             dbc.InputGroup(
                                 [
                                     dbc.Button("-", id="input-threshold_minus", n_clicks=0),
-                                    dbc.Input(id="value-threshold", placeholder="0", disabled=True, value=1),
+                                    dbc.Input(id="value-threshold", placeholder="0", disabled=True, value=5.725),
                                     dbc.Button("+", id="input-threshold_plus", n_clicks=0),
                                 ]
                             ),
@@ -121,7 +121,7 @@ def create_layout_home():
             ),
             dcc.Interval(
                 id='interval-component',
-                interval=1*5000, # in milliseconds
+                interval=1*10000, # in milliseconds
                 n_intervals=0
             )
         ],
